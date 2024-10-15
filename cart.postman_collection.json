@@ -1,0 +1,272 @@
+{
+	"info": {
+		"_postman_id": "86ef865c-ffa1-44d2-8f94-ffa61cd8520c",
+		"name": "cart",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "38223234"
+	},
+	"item": [
+		{
+			"name": "all cart",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"all cart is 200\", function () {\r",
+							"    pm.response.to.have.status(200);\r",
+							"});\r",
+							"pm.test(\"all cart\", function () {\r",
+							"    var jsonData = pm.response.json();\r",
+							"    pm.expect(jsonData[1].id).to.eql(2);\r",
+							"});"
+						],
+						"type": "text/javascript",
+						"packages": {}
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{base_url}}carts",
+					"host": [
+						"{{base_url}}carts"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "carts in a date range",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status code is 200\", function () {\r",
+							"    pm.response.to.have.status(200);\r",
+							"});\r",
+							"pm.test(\"data range in cart\", function () {\r",
+							"    var jsonData = pm.response.json();\r",
+							"    pm.expect(jsonData[0].id).to.eql(1);\r",
+							"});"
+						],
+						"type": "text/javascript",
+						"packages": {}
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{base_url}}carts?startdate=2019-12-10&enddate=2020-10-10",
+					"host": [
+						"{{base_url}}carts"
+					],
+					"query": [
+						{
+							"key": "startdate",
+							"value": "2019-12-10"
+						},
+						{
+							"key": "enddate",
+							"value": "2020-10-10"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "user carts",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status code is 200\", function () {\r",
+							"    pm.response.to.have.status(200);\r",
+							"});\r",
+							"pm.test(\"user cart\", function () {\r",
+							"    var jsonData = pm.response.json();\r",
+							"    pm.expect(jsonData[0].id).to.eql(3);\r",
+							"});"
+						],
+						"type": "text/javascript",
+						"packages": {}
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{base_url}}carts/user/2",
+					"host": [
+						"{{base_url}}carts"
+					],
+					"path": [
+						"user",
+						"2"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "new product",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"new product is 200\", function () {\r",
+							"    pm.response.to.have.status(200);\r",
+							"});"
+						],
+						"type": "text/javascript",
+						"packages": {}
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"title\": \"test product\",\r\n    \"price\": 13.5,\r\n    \"description\": \"lorem ipsum set\",\r\n    \"image\": \"https://i.pravatar.cc\",\r\n    \"category\": \"electronic\"\r\n}\r\n",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{base_url}}carts",
+					"host": [
+						"{{base_url}}carts"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Update a product",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status code is 200\", function () {\r",
+							"    pm.response.to.have.status(200);\r",
+							"});"
+						],
+						"type": "text/javascript",
+						"packages": {}
+					}
+				}
+			],
+			"request": {
+				"method": "PUT",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"title\": \"test product\",\r\n    \"price\": 13.5,\r\n    \"description\": \"lorem ipsum set\",\r\n    \"image\": \"https://i.pravatar.cc\",\r\n    \"category\": \"electronic\"\r\n}\r\n",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{base_url}}carts/7",
+					"host": [
+						"{{base_url}}carts"
+					],
+					"path": [
+						"7"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Delete a cart",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"delete from cart is 200\", function () {\r",
+							"    pm.response.to.have.status(200);\r",
+							"});\r",
+							""
+						],
+						"type": "text/javascript",
+						"packages": {}
+					}
+				},
+				{
+					"listen": "prerequest",
+					"script": {
+						"exec": [
+							""
+						],
+						"type": "text/javascript",
+						"packages": {}
+					}
+				}
+			],
+			"request": {
+				"method": "DELETE",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{base_url}}carts/6",
+					"host": [
+						"{{base_url}}carts"
+					],
+					"path": [
+						"6"
+					]
+				}
+			},
+			"response": []
+		}
+	],
+	"event": [
+		{
+			"listen": "prerequest",
+			"script": {
+				"type": "text/javascript",
+				"packages": {},
+				"exec": [
+					""
+				]
+			}
+		},
+		{
+			"listen": "test",
+			"script": {
+				"type": "text/javascript",
+				"packages": {},
+				"exec": [
+					"pm.test(\"Response time is less than 1000ms\", function () {\r",
+					"    pm.expect(pm.response.responseTime).to.be.below(1000);\r",
+					"});"
+				]
+			}
+		}
+	]
+}

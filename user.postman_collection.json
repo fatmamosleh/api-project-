@@ -1,0 +1,247 @@
+{
+	"info": {
+		"_postman_id": "138b5a9a-7f45-4350-a888-20e28f6ecb92",
+		"name": "user",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "38223234"
+	},
+	"item": [
+		{
+			"name": "all users",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"all user\", function () {\r",
+							"    var jsonData = pm.response.json();\r",
+							"    pm.expect(jsonData.address.city).to.eql('kilcoole'); \r",
+							"});\r",
+							"\r",
+							"pm.test(\"Status code is 200\", function () {\r",
+							"    pm.response.to.have.status(200);\r",
+							"});\r",
+							"pm.test(\"Response time is less than 1000ms\", function () {\r",
+							"    pm.expect(pm.response.responseTime).to.be.below(1000);\r",
+							"});"
+						],
+						"type": "text/javascript",
+						"packages": {}
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{base_url}}users/1",
+					"host": [
+						"{{base_url}}users"
+					],
+					"path": [
+						"1"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "single user",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status code is 200\", function () {\r",
+							"    pm.response.to.have.status(200);\r",
+							"});\r",
+							"pm.test(\"Your test name\", function () {\r",
+							"    var jsonData = pm.response.json();\r",
+							"    pm.expect(jsonData.email).to.eql('john@gmail.com');\r",
+							"});\r",
+							"pm.test(\"Response time is less than 1000ms\", function () {\r",
+							"    pm.expect(pm.response.responseTime).to.be.below(1000);\r",
+							"});"
+						],
+						"type": "text/javascript",
+						"packages": {}
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{base_url}}users/1",
+					"host": [
+						"{{base_url}}users"
+					],
+					"path": [
+						"1"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Sort results",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status code is 200\", function () {\r",
+							"    pm.response.to.have.status(200);\r",
+							"});\r",
+							"pm.test(\"Validate user address city\", function () {\r",
+							"    var jsonData = pm.response.json();\r",
+							"    pm.expect(jsonData[0].address.city).to.eql('kilcoole');\r",
+							"});\r",
+							"pm.test(\"Response time is less than 1000ms\", function () {\r",
+							"    pm.expect(pm.response.responseTime).to.be.below(1000);\r",
+							"});"
+						],
+						"type": "text/javascript",
+						"packages": {}
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{base_url}}users?}sort=desc",
+					"host": [
+						"{{base_url}}users"
+					],
+					"query": [
+						{
+							"key": "}sort",
+							"value": "desc"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Add a new user",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"\r",
+							"pm.test(\"Status code is 200\", function () {\r",
+							"    pm.response.to.have.status(200);\r",
+							"});\r",
+							"pm.test(\"Response time is less than 1000ms\", function () {\r",
+							"    pm.expect(pm.response.responseTime).to.be.below(1000);\r",
+							"});"
+						],
+						"type": "text/javascript",
+						"packages": {}
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"email\": \"John@gmail.com\",\r\n    \"username\": \"johnd\",\r\n    \"password\": \"m38rmF$\",\r\n    \"name\": {\r\n        \"firstname\": \"John\",\r\n        \"lastname\": \"Doe\"\r\n    },\r\n    \"address\": {\r\n        \"city\": \"kilcoole\",\r\n        \"street\": \"7835 new road\",\r\n        \"number\": 3,\r\n        \"zipcode\": \"12926-3874\",\r\n        \"geolocation\": {\r\n            \"lat\": \"-37.3159\",\r\n            \"long\": \"81.1496\"\r\n        }\r\n    },\r\n    \"phone\": \"1-570-236-7033\"\r\n}\r\n",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{base_url}}users",
+					"host": [
+						"{{base_url}}users"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Update a user",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"\r",
+							"pm.test(\"Status code is 200\", function () {\r",
+							"    pm.response.to.have.status(200);\r",
+							"});\r",
+							"pm.test(\"Response time is less than 1000ms\", function () {\r",
+							"    pm.expect(pm.response.responseTime).to.be.below(1000);\r",
+							"});"
+						],
+						"type": "text/javascript",
+						"packages": {}
+					}
+				}
+			],
+			"request": {
+				"method": "PUT",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"email\": \"John@gmail.com\",\r\n    \"username\": \"johnd\",\r\n    \"password\": \"m38rmF$\",\r\n    \"name\": {\r\n        \"firstname\": \"John\",\r\n        \"lastname\": \"Doe\"\r\n    },\r\n    \"address\": {\r\n        \"city\": \"kilcoole\",\r\n        \"street\": \"7835 new road\",\r\n        \"number\": 3,\r\n        \"zipcode\": \"12926-3874\",\r\n        \"geolocation\": {\r\n            \"lat\": \"-37.3159\",\r\n            \"long\": \"81.1496\"\r\n        }\r\n    },\r\n    \"phone\": \"1-570-236-7033\"\r\n}\r\n",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{base_url}}users/7",
+					"host": [
+						"{{base_url}}users"
+					],
+					"path": [
+						"7"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Delete a user",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Delete a user is 200\", function () {\r",
+							"    pm.response.to.have.status(200);\r",
+							"});\r",
+							"pm.test(\"Response time Delete a user is less than 1000ms\", function () {\r",
+							"    pm.expect(pm.response.responseTime).to.be.below(1000);\r",
+							"});"
+						],
+						"type": "text/javascript",
+						"packages": {}
+					}
+				}
+			],
+			"request": {
+				"method": "DELETE",
+				"header": [],
+				"url": {
+					"raw": "{{base_url}}users/6",
+					"host": [
+						"{{base_url}}users"
+					],
+					"path": [
+						"6"
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}
