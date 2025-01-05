@@ -1,0 +1,16 @@
+<!DOCTYPE suite SYSTEM "https://testng.org/testng-1.0.dtd">
+<suite name="CartTestSuite">
+
+    <test name="CartTestRest">
+      <classes>
+          <class name="CartTest"></class>
+      </classes>
+    </test>
+<test name="login">
+    <classes>
+        <class name="Login">
+        </class>
+    </classes>
+    
+</test><![CDATA[
+</suite>
